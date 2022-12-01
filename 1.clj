@@ -22,7 +22,7 @@
 
 (defn add-to-ordered-seq
   [cmp limit xs item]
-  (if (and (empty? xs) (> limit 0))
+  (if (empty? xs)
     (conj xs item)
     (let [result (if-not (cmp item (first xs))
                    (conj xs item)
