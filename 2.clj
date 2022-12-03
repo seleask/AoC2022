@@ -40,9 +40,6 @@
        (map score-round)
        (apply +)))
 
-(def rh-equivalent-of (zipmap lh-moves
-                              rh-moves))
-
 (defn determine-move
   [[l r]]
   (let [y (- (move->score r) 2) ;; convert the outcome 1 to 3 range to -1 to 1
