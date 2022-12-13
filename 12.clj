@@ -36,13 +36,15 @@
     (int c)))
 
 (defn rel-accessible?
-  [flip rows here there]
-  (let [[there-height here-height] ((if flip reverse identity)
-                                    (map #(height->int (get-in rows %)) [there here]))]
+  [rows here there]
+  (let [[there-height here-height]
+        (map #(height->int (get-in rows %)) [there here])]
     (<= there-height (inc here-height))))
 
-(def ascending-accessible? (partial rel-accessible? false))
-(def descending-accessible? (partial rel-accessible? true))
+(def ascending-accessible? rel-accessible?)
+(defn descending-accessible?
+  [rows here there]
+  (rel-accessible? rows there here))
 
 (defn children
   [rows [i j] accessible?]
